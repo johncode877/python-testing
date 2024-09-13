@@ -42,4 +42,10 @@ unitarias se verificara que se escriba en el log
 
 https://www.youtube.com/watch?v=cSn7Ut4lysY
 
+https://www.pythontutorial.net/python-unit-testing/python-unittest-skip-test/
+
+
+ 
+ 
+ 
  

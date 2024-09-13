@@ -2,13 +2,18 @@ import os
 import random
 import unittest
 from src.bank_account import BankAccount
+from src.api_exchange_rate import Api_Exchange_Rate
 
 class BankAccountTests(unittest.TestCase):
     
+    api_exchange_rate = Api_Exchange_Rate()
+    available_api = api_exchange_rate.is_available() 
+
     # Se ejecuta antes de cada prueba
     def setUp(self) -> None:
       self.account = BankAccount(balance=1000, log_file=f"transaction_log.txt")      
       self.other_account = BankAccount(balance=800)
+      
 
     # Se ejecuta despues de cada prueba 
     def tearDown(self) -> None:
@@ -68,3 +73,9 @@ class BankAccountTests(unittest.TestCase):
        self.account.deposit(500)
        assert self._count_lines(self.account.log_file) == 2
 
+    @unittest.skipUnless(available_api,"Api exchange rate no available")
+    def test_deposit_in_dollars(self):
+      self.assertEqual(self.account.deposit_in_dollars(100),1375) 
+       
+   
+    

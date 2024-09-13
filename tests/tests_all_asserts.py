@@ -1,5 +1,6 @@
 import unittest
 
+SERVER = "server_a"
 class AllAsertsTests(unittest.TestCase):
     
     def test_assert_equal(self):
@@ -30,3 +31,24 @@ class AllAsertsTests(unittest.TestCase):
             {1,2,3},
             {1,2,3}
         )
+
+    @unittest.skip("Trabajo en progreso, será habilitada nuevamente")
+    def test_skip(self):
+        self.assertEqual("hola","chao")
+
+    #@unittest.skip(True,"Saltado porque no estamos en el servidor")
+    ##
+    # Si queremos saltar la prueba porque es muy pesada la prueba
+    # y se necesita un servidor con muchos recursos
+    ##
+    @unittest.skipIf(SERVER == "server_a", "Saltado porque no estamos en el servidor")
+    def test_skip_if(self):
+       self.assertEqual(100,100)
+
+
+    # Se espera este error en la aplicacion    
+    @unittest.expectedFailure
+    def test_expected_failure(self):
+       self.assertEqual(100,150)    
+
+      
