@@ -25,6 +25,17 @@ python3 -m unittest discover -s tests
 modo verbose 
 python3 -m unittest discover -v -s tests
 
+# Uso de TearDown para limpiar data en UnitTest
+
+Se añadira un archivo log para que registre
+por cada transaccion que se realice en la 
+clase BankAccount , y mediante pruebas 
+unitarias se verificara que se escriba en el log
+
+
+
+
+
 
 
 # Articulos de interes

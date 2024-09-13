@@ -1,15 +1,19 @@
+import random
 import unittest
 from src.bank_account import BankAccount
 
 class BankAccountTests(unittest.TestCase):
     
-    def setUp(self) -> None:
-      self.account = BankAccount(balance=1000) 
-      self.other_account = BankAccount(balance=800) 
+    def setUp(self) -> None:      
+      rname = random.random()*100
+      self.account = BankAccount(balance=1000, log_file=f"transaction_log{rname}.txt") 
+      rname = random.random()*100
+      self.other_account = BankAccount(balance=800, log_file=f"transaction_log{rname}.txt") 
 
     def test_deposit(self):      
       #account = BankAccount(balance=1000) 
       new_balance = self.account.deposit(500)
+      
       assert new_balance == 1500
 
     def test_withdraw(self):
@@ -28,3 +32,6 @@ class BankAccountTests(unittest.TestCase):
     def test_transfer_insuficiente(self):     
        with self.assertRaises(ValueError): 
          self.account.transfer(2000,self.other_account)
+     
+    def test_transaction_log(self):
+       new_balance = self.account.deposit(500)
