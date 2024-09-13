@@ -45,10 +45,7 @@ class AllAsertsTests(unittest.TestCase):
     def test_skip_if(self):
        self.assertEqual(100,100)
 
-
     # Se espera este error en la aplicacion    
     @unittest.expectedFailure
     def test_expected_failure(self):
-       self.assertEqual(100,150)    
-
-      
+       self.assertEqual(100,150)

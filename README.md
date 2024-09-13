@@ -33,8 +33,25 @@ clase BankAccount , y mediante pruebas
 unitarias se verificara que se escriba en el log
 
 
+# Suites
 
+Para organizar mejor nuestro conjunto de pruebas
+utilizamos suites. Esta se crea de forma automatica
+cuando usamos el comando discover al lanzar 
+nuestras pruebas por consola 
 
+python3 -m unittest discover -v -s tests
+
+Especifica la variable PYTHONPATH para poder ejecutar
+las pruebas definidas en la suite
+
+PYTHONPATH=. python3 tests/test_suites.py
+
+Tambien podemos ejecutar una prueba especificas desde la terminal
+python3 -m unittest tests.test_calculator.CalculatorTests.test_multiply
+
+Para ejecutar todas las pruebas de la clase
+python3 -m unittest tests.test_calculator.CalculatorTests
 
 
 

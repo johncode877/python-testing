@@ -1,5 +1,4 @@
 import os
-import random
 import unittest
 from src.bank_account import BankAccount
 from src.api_exchange_rate import Api_Exchange_Rate
