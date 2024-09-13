@@ -1,14 +1,33 @@
+import os
 import random
 import unittest
 from src.bank_account import BankAccount
 
 class BankAccountTests(unittest.TestCase):
     
-    def setUp(self) -> None:      
-      rname = random.random()*100
-      self.account = BankAccount(balance=1000, log_file=f"transaction_log{rname}.txt") 
-      rname = random.random()*100
-      self.other_account = BankAccount(balance=800, log_file=f"transaction_log{rname}.txt") 
+    # Se ejecuta antes de cada prueba
+    def setUp(self) -> None:
+      self.account = BankAccount(balance=1000, log_file=f"transaction_log.txt")      
+      self.other_account = BankAccount(balance=800)
+
+    # Se ejecuta despues de cada prueba 
+    def tearDown(self) -> None:
+      if os.path.exists(self.account.log_file):
+          os.remove(self.account.log_file)
+ 
+
+    def _count_lines(self,filename):
+      with open(filename,"r") as f:
+         return len(f.readlines())
+    
+    def _get_last_transaction(self,filename) -> str:
+      transaction=""
+      with open(filename,"r") as f:
+         transaction = f.readlines()
+
+      if len(transaction):
+         return transaction[len(transaction)-1]
+      
 
     def test_deposit(self):      
       #account = BankAccount(balance=1000) 
@@ -32,6 +51,16 @@ class BankAccountTests(unittest.TestCase):
     def test_transfer_insuficiente(self):     
        with self.assertRaises(ValueError): 
          self.account.transfer(2000,self.other_account)
+         assert self._count_lines(self.account.log_file) == 2
+         assert self._get_last_transaction(self.account.log_file) == f"Insuficient Balance: {self.account.balance} - Amount: 2000"
      
     def test_transaction_log(self):
-       new_balance = self.account.deposit(500)
+       self.account.deposit(500)
+       assert os.path.exists("transaction_log.txt")
+    
+    def test_count_transactions(self):
+       assert self._count_lines(self.account.log_file) == 1
+
+       self.account.deposit(500)
+       assert self._count_lines(self.account.log_file) == 2
+
