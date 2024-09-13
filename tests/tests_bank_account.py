@@ -27,6 +27,4 @@ class BankAccountTests(unittest.TestCase):
 
     def test_transfer_insuficiente(self):     
        with self.assertRaises(ValueError): 
-            self.account.transfer(2000,self.other_account)
-    
-    
+         self.account.transfer(2000,self.other_account)
