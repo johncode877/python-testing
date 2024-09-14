@@ -33,13 +33,13 @@ class BankAccountTests(unittest.TestCase):
          return transaction[len(transaction)-1]
       
 
-    def test_deposit(self):      
+    def test_deposit_positive_amount_increase_balance(self):      
       #account = BankAccount(balance=1000) 
       new_balance = self.account.deposit(500)
       #assert new_balance == 1500
       self.assertEqual(new_balance,1500,"El balance no es igual")
 
-    def test_withdraw(self):
+    def test_withdraw_positive_amount_decrease_balance(self):
       #account = BankAccount(balance=800)
       new_balance = self.account.withdraw(500)
       #assert new_balance == 500
@@ -50,15 +50,15 @@ class BankAccountTests(unittest.TestCase):
       #assert self.account.get_balance() == 1000
      self.assertEqual(self.account.get_balance(),1000)
 
-    def test_transfer(self):
+    def test_transfer_positive_amount_decrease_balance(self):
       #account = BankAccount(balance=200)
       assert self.account.transfer(200,self.other_account) == 800  
 
-    def test_transfer_insuficiente(self):     
+    def test_transfer_positive_amount_insufficient_balance(self):     
        with self.assertRaises(ValueError): 
          self.account.transfer(2000,self.other_account)
          assert self._count_lines(self.account.log_file) == 2
-         assert self._get_last_transaction(self.account.log_file) == f"Insuficient Balance: {self.account.balance} - Amount: 2000"
+         assert self._get_last_transaction(self.account.log_file) == f"Insufficient Balance: {self.account.balance} - Amount: 2000"
      
     def test_transaction_log(self):
        self.account.deposit(500)

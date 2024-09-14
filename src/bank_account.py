@@ -48,7 +48,7 @@ class BankAccount:
   
   def transfer(self, amount, account: BankAccount):
     if self.balance < amount:
-       self._log_transaction(f"Insuficient Balance: {self.balance} - Amount: {amount}")
+       self._log_transaction(f"Insufficient Balance: {self.balance} - Amount: {amount}")
        raise ValueError("Balance insuficiente")
         
     account.deposit(amount)

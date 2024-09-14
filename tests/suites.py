@@ -5,8 +5,8 @@ from tests.test_bank_account import BankAccountTests
 def bank_account_suite():
     print("bank_account_suite")
     suite = unittest.TestSuite()
-    suite.addTest(BankAccountTests("test_deposit"))
-    suite.addTest(BankAccountTests("test_withdraw"))
+    suite.addTest(BankAccountTests("test_deposit_positive_amount_increase_balance"))
+    suite.addTest(BankAccountTests("test_withdraw_positive_amount_decrease_balance"))
     return suite
 
 
