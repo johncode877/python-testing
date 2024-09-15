@@ -69,9 +69,19 @@ ej. test_deposit_positive_amount_increase_balance
 
 # Mocking de APIs externas en Python con unittest
 
+Esto se usa cuando queremos aislar ciertos
+servicios que no los tenemos disponibles
+o que son muy pesados para probar 
 
+# Uso de Side Effects en Mocking 
 
+Side Effects nos permite poder modificar 
+nuestro codigo de formas variables 
+para simular que a veces nuestro codigo
+funcion y otras veces no , para probar 
+la resilencia de nuestro codigo
 
+python3 -m unittest tests.test_api_client.ApiClientTests.test_get_location_returns_side_effect
 
 
 
