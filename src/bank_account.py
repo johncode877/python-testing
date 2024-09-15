@@ -1,5 +1,8 @@
 from __future__ import annotations
+from datetime import datetime
 from src.api_exchange_rate import Api_Exchange_Rate
+from src.exceptions import WithdrawalTimeRestrictionError,WithdrawalDayRestrictionError
+
 
 class BankAccount:
   
@@ -10,9 +13,6 @@ class BankAccount:
     self.log_file = log_file
     self._log_transaction("Cuenta creada")
 
-
-  def exchange_rate():
-    return 
 
   def _log_transaction(self,message):
     if self.log_file:
@@ -37,6 +37,17 @@ class BankAccount:
     return self.balance
 
   def withdraw(self, amount):
+     
+    current_dateTime = datetime.now()
+
+    week_day = current_dateTime.weekday() 
+   
+    if week_day == 5 or week_day == 6 :
+      raise WithdrawalDayRestrictionError("Withdrawals not allowed Saturday and Sunday") 
+
+    if current_dateTime.hour < 8 or current_dateTime.hour > 17:
+      raise WithdrawalTimeRestrictionError("Withdrawals are only allowed from 8am to 5pm")
+    
     if amount > 0:
       self.balance -= amount
       self._log_transaction(f"Withdrew {amount}. New balance: {self.balance}")

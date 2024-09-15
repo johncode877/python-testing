@@ -83,6 +83,14 @@ la resilencia de nuestro codigo
 
 python3 -m unittest tests.test_api_client.ApiClientTests.test_get_location_returns_side_effect
 
+# Uso de Patching para Modificar Comportamientos en Python
+
+En algunas ocasiones , va ser necesario 
+modificar ciertos comportamiento para realizar 
+pruebas sobre alguna funcionalidad implementada en el codigo
+como por ejemplo una restriccion en el retiro en la 
+clase BankAccount 
+
 
 
 

@@ -1,7 +1,10 @@
 import os
 import unittest
+from unittest.mock import patch
 from src.bank_account import BankAccount
 from src.api_exchange_rate import Api_Exchange_Rate
+from src.exceptions import InsufficientFundsError, WithdrawalDayRestrictionError,WithdrawalTimeRestrictionError
+
 
 class BankAccountTests(unittest.TestCase):
     
@@ -77,4 +80,44 @@ class BankAccountTests(unittest.TestCase):
       self.assertEqual(self.account.deposit_in_dollars(100),1375) 
        
    
+    @patch("src.bank_account.datetime") 
+    def test_withdraw_during_bussiness_hour(self,mock_datetime):
+      mock_datetime.now.return_value.hour = 8
+      new_balance = self.account.withdraw(100)
+      self.assertEqual(new_balance,900)
     
+    @patch("src.bank_account.datetime") 
+    def test_withdraw_disallow_before_bussiness_hour(self,mock_datetime):
+      mock_datetime.now.return_value.hour = 7
+      with self.assertRaises(WithdrawalTimeRestrictionError):
+        self.account.withdraw(100)  
+
+    @patch("src.bank_account.datetime") 
+    def test_withdraw_disallow_after_bussiness_hour(self,mock_datetime):
+      mock_datetime.now.return_value.hour = 19
+      with self.assertRaises(WithdrawalTimeRestrictionError):
+        self.account.withdraw(100)  
+
+    @patch("src.bank_account.datetime") 
+    def test_withdraw_day_allowed(self,mock_datetime):
+      # 8 am monday
+      mock_datetime.now.return_value.hour = 8
+      mock_datetime.now.return_value.weekday.return_value = 0
+      new_balance = self.account.withdraw(100)
+      self.assertEqual(new_balance,900)
+
+    @patch("src.bank_account.datetime") 
+    def test_withdraw_disallowed_in_saturday(self,mock_datetime):
+      # 8 am saturday
+      mock_datetime.now.return_value.hour = 8
+      mock_datetime.now.return_value.weekday.return_value = 5
+      with self.assertRaises(WithdrawalDayRestrictionError):
+        self.account.withdraw(100)  
+
+    @patch("src.bank_account.datetime") 
+    def test_withdraw_disallowed_in_sunday(self,mock_datetime):
+      # 8 am sunday
+      mock_datetime.now.return_value.hour = 8
+      mock_datetime.now.return_value.weekday.return_value = 6
+      with self.assertRaises(WithdrawalDayRestrictionError):
+        self.account.withdraw(100)      
