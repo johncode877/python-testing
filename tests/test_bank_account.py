@@ -37,24 +37,30 @@ class BankAccountTests(unittest.TestCase):
       
 
     def test_deposit_positive_amount_increase_balance(self):      
-      #account = BankAccount(balance=1000) 
+      
       new_balance = self.account.deposit(500)
-      #assert new_balance == 1500
+      
       self.assertEqual(new_balance,1500,"El balance no es igual")
 
-    def test_withdraw_positive_amount_decrease_balance(self):
-      #account = BankAccount(balance=800)
+    @patch("src.bank_account.datetime") 
+    def test_withdraw_positive_amount_decrease_balance(self,mock_datetime):
+      
+      # 8 am monday
+      mock_datetime.now.return_value.hour = 8
+      mock_datetime.now.return_value.weekday.return_value = 0
       new_balance = self.account.withdraw(500)
-      #assert new_balance == 500
+      
       self.assertEqual(new_balance,500,"El balance no es igual")
 
     def test_get_balance(self):
-      #account = BankAccount(balance=200)
-      #assert self.account.get_balance() == 1000
+     
      self.assertEqual(self.account.get_balance(),1000)
 
-    def test_transfer_positive_amount_decrease_balance(self):
-      #account = BankAccount(balance=200)
+    @patch("src.bank_account.datetime") 
+    def test_transfer_positive_amount_decrease_balance(self,mock_datetime):
+      # 8 am monday
+      mock_datetime.now.return_value.hour = 8
+      mock_datetime.now.return_value.weekday.return_value = 0
       assert self.account.transfer(200,self.other_account) == 800  
 
     def test_transfer_positive_amount_insufficient_balance(self):     
@@ -65,7 +71,7 @@ class BankAccountTests(unittest.TestCase):
      
     def test_transaction_log(self):
        self.account.deposit(500)
-       #assert os.path.exists("transaction_log.txt")
+     
        self.assertTrue(os.path.exists("transaction_log.txt"))
 
     
@@ -137,4 +143,3 @@ class BankAccountTests(unittest.TestCase):
            self.account = BankAccount(balance=1000,log_file="transaction.txt")
            new_balance = self.account.deposit(case["ammount"])
            self.assertEqual(new_balance,case["expected"])
-           

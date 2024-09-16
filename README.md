@@ -114,6 +114,29 @@ pip3 install Faker
 
 python3 -m unittest tests.test_user.UserTests.test_user_creation
 
+# Cobertura de pruebas con Coverage
+
+Se recomienda un 80% de cobertura en las 
+pruebas de tu codigo 
+
+pip3 install coverage
+
+coverage run -m unittest discover tests
+
+Especificamos cuales son los archivos que deben 
+utilizarse para realizar las pruebas 
+
+coverage run --source src -m unittest
+
+coverage report fail_under 90
+
+Si queremos saber que lineas nos faltan probar de nuestro
+codigo 
+
+coverage html
+
+
+# Automatización de Pruebas Unitarias en Python con GitHub Actions
 
 
 

@@ -6,9 +6,8 @@ def get_location(ip):
     ipaddress.ip_address(ip)
     url = f"https://freeipapi.com/api/json/{ip}"
 
-    response = requests.get(url)
-    print(response.status_code)
-    print(response.raise_for_status())
+    response = requests.get(url)    
+    response.raise_for_status()
     data = response.json()
     
     #import ipdb; ipdb.set_trace()
@@ -22,5 +21,5 @@ def get_location(ip):
 
 
 
-if __name__ == "__main__":
-   print(get_location("300.8.8.8"))
+#if __name__ == "__main__":
+#   print(get_location("300.8.8.8"))
