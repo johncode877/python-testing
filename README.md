@@ -138,6 +138,9 @@ coverage html
 
 # Automatización de Pruebas Unitarias en Python con GitHub Actions
 
+Cada vez que hagamos un cambio , vamos a querer probar 
+nuestro codigo en base a las pruebas de forma automatico 
+
 
 
 # Articulos de interes
