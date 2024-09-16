@@ -149,6 +149,12 @@ que dispara el workflow , version de python , framework de
 pruebas unitarias a usar , etc)
 
 
+Uso de matrix
+
+https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow
+
+
+
 # Articulos de interes
 
 https://www.youtube.com/watch?v=cSn7Ut4lysY
