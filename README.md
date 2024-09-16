@@ -86,11 +86,20 @@ python3 -m unittest tests.test_api_client.ApiClientTests.test_get_location_retur
 # Uso de Patching para Modificar Comportamientos en Python
 
 En algunas ocasiones , va ser necesario 
-modificar ciertos comportamiento para realizar 
-pruebas sobre alguna funcionalidad implementada en el codigo
-como por ejemplo una restriccion en el retiro en la 
-clase BankAccount 
+simular ciertas situaciones especificas
+como fechas , horarios , ubicaciones , etc 
+para validar alguna prueba en nuestro codigo
+(restriccion en el retiro en la clase BankAccount)
 
+# Parametrizar pruebas en Python con SubTest
+
+En algunas ocasiones necesitamos , validar 
+que nuestro metodo deposit funciona con varios 
+valores 1000, 100,000 , 500,000 , podriamos hacerlo
+repitiendo 3 veces la misma prueba 
+esto seria duplicar codigo
+podemos usar subtest para pasarle un diccionario
+con distintos valores 
 
 
 
