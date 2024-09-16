@@ -141,6 +141,12 @@ coverage html
 Cada vez que hagamos un cambio , vamos a querer probar 
 nuestro codigo en base a las pruebas de forma automatico 
 
+En la seccion Actions del repositorio de GitHub
+seleccionamos "Python Application" del marketplace 
+y actualizamos en el script plantilla de acuerdo 
+a nuestras necesidades  (modificar la rama , el evento 
+que dispara el workflow , version de python , framework de 
+pruebas unitarias a usar , etc)
 
 
 # Articulos de interes
