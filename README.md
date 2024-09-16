@@ -101,6 +101,13 @@ esto seria duplicar codigo
 podemos usar subtest para pasarle un diccionario
 con distintos valores 
 
+# Documentación de pruebas unitarias con Doctest
+Doctest es una libreria incluida en el codigo principal de Python 
+nos permite crear pruebas en los comentarios de los metodos 
+
+
+python3 -m doctest src/calculator.py
+
 
 
 # Articulos de interes
