@@ -108,6 +108,13 @@ nos permite crear pruebas en los comentarios de los metodos
 
 python3 -m doctest src/calculator.py
 
+# Usando Faker para generar datos de prueba dinámicos
+
+pip3 install Faker
+
+python3 -m unittest tests.test_user.UserTests.test_user_creation
+
+
 
 
 # Articulos de interes
