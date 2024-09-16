@@ -19,7 +19,7 @@ jobs:
     # con distintas versiones de python 
     strategy:
       matrix:  
-       version: [3.13, 3.10 , 3.9]
+       version: ["3.13", "3.10" , "3.9"]
 
     runs-on: ubuntu-latest
 
